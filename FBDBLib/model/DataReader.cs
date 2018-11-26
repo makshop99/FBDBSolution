@@ -13,13 +13,13 @@ namespace FBDBLib.model
         bool gInternetFiles = false;
         bool gInnerState = false;
         
-        public int init(FileProp oData, bool bUrl)
+        public int init(FileProp oData)
         {
             int iReturn = checkData(oData);
             if (iReturn == 0)
             {
                 gFiles = oData;
-                gInternetFiles = bUrl;
+                //gInternetFiles = bUrl;
                 gInnerState = true;
             }
             return iReturn;
@@ -27,7 +27,8 @@ namespace FBDBLib.model
 
 
         /// <summary>
-        /// this method checks if all three paths are filled
+        /// this method checks if all three paths are filled and valid.
+        /// it also checks if the paths are URLS
         /// </summary>
         /// <param name="oData"></param>
         /// <returns></returns>

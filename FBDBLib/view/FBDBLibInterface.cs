@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FBDBLib.controller;
+using FBDBLib.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +10,28 @@ namespace FBDBLib.view
 {
     public class FBDBLibInterface
     {
+        private FTDBLibController oController;
+
         /// <summary>
         /// this method takes init data and initializes the class
         /// </summary>
         /// <param name="sData"></param>
-        /// <returns></returns>
-        public int init(string sData)
+        /// <returns>
+        ///  0 -> no error 
+        /// -1 -> no offense file delivered
+        /// -2 -> no defense path delivered
+        /// -3 -> no gameday path delivered 
+        /// </returns>
+        public int init(FileProp oData)
         {
+            // check data
+            if (oData.OffenseFile.Length < 1) return -1;
+            if (oData.DefenseFile.Length < 1) return -2;
+            if (oData.GamedayFile.Length < 1) return -3;
+
+            // init controller
+            oController = new FTDBLibController();
+            oController.init(oData);
             return 0;
         }
 
@@ -23,8 +40,10 @@ namespace FBDBLib.view
         /// </summary>
         /// <param name="sData"></param>
         /// <returns></returns>
-        public string getGameDay(string sData)
+        public string getGameDay(string sWeek)
         {
+
+
             return "";
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FBDBLib.data
 {
-    class FileProp
+    public class FileProp
     {
         private string sOffenseFile;
         private string sDefenseFile;

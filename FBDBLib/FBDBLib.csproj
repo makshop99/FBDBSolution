@@ -40,13 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\FTDBLibController.cs" />
     <Compile Include="model\DataReader.cs" />
     <Compile Include="data\FileProp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\FBDBLibInterface.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
