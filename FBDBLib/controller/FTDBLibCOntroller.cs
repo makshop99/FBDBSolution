@@ -27,18 +27,23 @@ namespace FBDBLib.controller
         }
         
 
-        public string analyzeGameday(string sGameDay)
+        public string analyzeGameday(string sGameday)
         {
             // gameday auslesen
+            List<GameProp> oGameday = new List<GameProp>();
+            oGameday = oFileAccess.getSchedule(sGameday);
+
             // spiele analysieren
+            DataAnalyzer oStats = new DataAnalyzer();
+            // iterativ alle Spiele analyieren, ein gemeinsamen String erzeugen
 
             return "stats of all games";
         }
 
-        public string analyzeGame()
+        public string analyzeGame(GameProp oGame)
         {
-            // spiel anaysieren
-            return "stats of a single game";
+            // spiel anaysieren                       
+            return new DataAnalyzer().analyzeGame(oGame);
         }
         #endregion
 

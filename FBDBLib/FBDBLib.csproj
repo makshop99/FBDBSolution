@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controller\FTDBLibController.cs" />
+    <Compile Include="data\GameProp.cs" />
+    <Compile Include="model\DataAnalyzer.cs" />
     <Compile Include="model\DataReader.cs" />
     <Compile Include="data\FileProp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

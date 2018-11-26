@@ -5,13 +5,13 @@ using FBDBLib.data;
 namespace FBDBLibUnit.view
 {
     [TestClass]
-    public class UnitTest_FBDBLibInterface
+    public class UnitFBDBLibInterface_FBDBLibInterface
     {
 
 
-        #region testdata local paths
+        #region init tests - local paths
         [TestMethod]
-        public void Test_initFilesOk()
+        public void FBDBLibInterface_init_FilesOk()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -25,7 +25,7 @@ namespace FBDBLibUnit.view
         }
 
         [TestMethod]
-        public void Test_initGamedayFileEmpty()
+        public void FBDBLibInterface_init_ScheduleFileEmpty()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -39,7 +39,7 @@ namespace FBDBLibUnit.view
         }
 
         [TestMethod]
-        public void Test_initOffenseFilesEmpty()
+        public void FBDBLibInterface_init_OffenseFilesEmpty()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -53,7 +53,7 @@ namespace FBDBLibUnit.view
         }
 
         [TestMethod]
-        public void Test_initDefenseFileEmpty()
+        public void FBDBLibInterface_init_DefenseFileEmpty()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -67,9 +67,9 @@ namespace FBDBLibUnit.view
         }
         #endregion
 
-        #region testdata url paths
+        #region init tests - URL
         [TestMethod]
-        public void Test_initURLsOk()
+        public void FBDBLibInterface_init_URLsOk()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -83,7 +83,7 @@ namespace FBDBLibUnit.view
         }
 
         [TestMethod]
-        public void Test_initDefensURLEmpty()
+        public void FBDBLibInterface_init_DefensURLEmpty()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -97,7 +97,7 @@ namespace FBDBLibUnit.view
         }
 
         [TestMethod]
-        public void Test_initOffensURLEmpty()
+        public void FBDBLibInterface_init_OffensURLEmpty()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -111,7 +111,7 @@ namespace FBDBLibUnit.view
         }
 
         [TestMethod]
-        public void Test_initGamedayURLEmpty()
+        public void FBDBLibInterface_init_ScheduleURLEmpty()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
@@ -122,6 +122,96 @@ namespace FBDBLibUnit.view
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
             Assert.AreEqual(iReturn, -3);
+        }
+        #endregion
+
+
+        #region gameday tests
+        /*
+        [TestMethod]
+        public void FBDBLibInterface_GamedayOK()
+        {
+            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FileProp oData = new FileProp();
+            oData.OffenseFile = @"c:\dummy\offense.txt";
+            oData.DefenseFile = @"c:\dummy\offense.txt";
+            oData.GamedayFile = @"c:\dummy\offense.txt";
+
+            // test with local paths OK
+            int iReturn = oPruefling.init(oData);
+            Assert.AreEqual(iReturn, 0);
+        }
+        */
+        #endregion
+
+        #region game tests
+        [TestMethod]
+        public void FBDBLibInterface_game_OK()
+        {
+            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FileProp pPaths = new FileProp();
+            pPaths.OffenseFile = @"c:\dummy\offense.txt";
+            pPaths.DefenseFile = @"c:\dummy\defense.txt";
+            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            int iReturn = oPruefling.init(pPaths);
+
+            GameProp oData = new GameProp();
+            oData.Home = "Detroit Lions";
+            oData.Away = "Atlanta Falcons";
+            string sSoll = "stats of a single game";
+            string sIst = oPruefling.getGame(oData);
+            Assert.AreEqual(sIst, sSoll);
+        }
+
+        [TestMethod]
+        public void FBDBLibInterface_game_HometeamEmpty()
+        {
+            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FileProp pPaths = new FileProp();
+            pPaths.OffenseFile = @"c:\dummy\offense.txt";
+            pPaths.DefenseFile = @"c:\dummy\defense.txt";
+            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            int iReturn = oPruefling.init(pPaths);
+
+            GameProp oData = new GameProp();
+            oData.Home = "";
+            oData.Away = "Atlanta Falcons";
+            string sSoll = "error: no hometeam passed";
+            string sIst = oPruefling.getGame(oData);
+            Assert.AreEqual(sIst, sSoll);
+        }
+
+        [TestMethod]
+        public void FBDBLibInterface_game_AwayteamEmpty()
+        {
+            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FileProp pPaths = new FileProp();
+            pPaths.OffenseFile = @"c:\dummy\offense.txt";
+            pPaths.DefenseFile = @"c:\dummy\defense.txt";
+            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            int iReturn = oPruefling.init(pPaths);
+
+            GameProp oData = new GameProp();
+            oData.Home = "Detroit Lions";
+            oData.Away = "";
+            string sSoll = "error: no awayteam passed";
+            string sIst = oPruefling.getGame(oData);
+            Assert.AreEqual(sIst, sSoll);
+        }
+
+        [TestMethod]
+        public void FBDBLibInterface_game_NoData()
+        {
+            FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
+            FileProp pPaths = new FileProp();
+            pPaths.OffenseFile = @"c:\dummy\offense.txt";
+            pPaths.DefenseFile = @"c:\dummy\defense.txt";
+            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            int iReturn = oPruefling.init(pPaths);
+
+            string sSoll = "error: no gameday passed";
+            string sIst = oPruefling.getGame(null);
+            Assert.AreEqual(sIst, sSoll);
         }
         #endregion
     }

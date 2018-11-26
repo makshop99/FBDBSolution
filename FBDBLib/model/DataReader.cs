@@ -9,21 +9,37 @@ namespace FBDBLib.model
 {
     class DataReader
     {
-        private FileProp gFiles = new FileProp();
+        private FileProp gFileContents = new FileProp();
         bool gInternetFiles = false;
         bool gInnerState = false;
         
-        public int init(FileProp oData)
+        public int init(FileProp sFilePaths)
         {
-            int iReturn = checkData(oData);
+            // Aufgaben
+            
+            // die Fileinhalte in eine eigene Struktur schreiben
+
+
+
+            int iReturn = checkData(sFilePaths);
             if (iReturn == 0)
             {
-                gFiles = oData;
-                //gInternetFiles = bUrl;
+                // pruefen, ob File oder URL
+                //gInternetFiles = checkPaths(sFilePaths);
+
+                // entsprechend die Daten auslesen    
+
+                // wenn alles in Ordnung ist, inneren Status auf OK setzen
                 gInnerState = true;
             }
             return iReturn;
         }
+
+        public List<GameProp> getSchedule(string sGameday)
+        {
+            return null;
+        }
+
 
 
         /// <summary>

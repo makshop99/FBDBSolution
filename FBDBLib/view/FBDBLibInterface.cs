@@ -40,11 +40,10 @@ namespace FBDBLib.view
         /// </summary>
         /// <param name="sData"></param>
         /// <returns></returns>
-        public string getGameDay(string sWeek)
+        public string getGameDay(string sGameday)
         {
-
-
-            return "";
+            if (sGameday.Length <= 0) return "error: no gameday passed";
+            return oController.analyzeGameday(sGameday);
         }
 
 
@@ -53,9 +52,12 @@ namespace FBDBLib.view
         /// </summary>
         /// <param name="sData"></param>
         /// <returns></returns>
-        public string getGame(string sData)
+        public string getGame(GameProp oData)
         {
-            return ""; ;
+            if (oData == null) return "error: no gameday passed";
+            if (oData.Home.Length <= 0) return "error: no hometeam passed";
+            if (oData.Away.Length <= 0) return "error: no awayteam passed";
+            return oController.analyzeGame(oData);
         }
     }
 }

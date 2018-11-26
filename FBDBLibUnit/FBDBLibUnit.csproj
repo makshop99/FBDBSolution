@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\UnitTest_FBDBLibController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\UnitTest_FBDBLibInterface.cs" />
   </ItemGroup>
