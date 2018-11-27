@@ -28,7 +28,7 @@ namespace FBDBLib.view
             // check data
             if (oData.OffenseFile.Length < 1) return -1;
             if (oData.DefenseFile.Length < 1) return -2;
-            if (oData.GamedayFile.Length < 1) return -3; // changed back to -3 for azure devops unit tests
+            if (oData.GamedayFile.Length < 1) return -3;
 
             // init controller
             oController = new FTDBLibController();
