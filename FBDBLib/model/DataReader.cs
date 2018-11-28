@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace FBDBLib.model
 {
+    // Diese Methode liest Dateien aus und stellt deren Inhalt als String zur 
+    // verfuegung. Sie prueft die uebergebenen Pfade auf Korrektheit und darauf, 
+    // ob es sich um lokale Pfade oder URL`s handelt. Den eigentlichen Zugriff auf
+    // das Filesystem oder das Internet wird sie vermutlich ebenfalls uebernehmen. 
+    // Das haengt von der Laenge des zu verwendenden Codes ab. Ggf. werden diese 
+    // Funktionen spaeter noch ausgelagert. 
     class DataReader
     {
         private FileProp gFileContents = new FileProp();
@@ -35,9 +41,27 @@ namespace FBDBLib.model
             return iReturn;
         }
 
+        /// <summary>
+        /// this method returns a list<> with all games of a specific gameday.
+        /// the name of the gameday is the parameter of this method.
+        /// </summary>
+        /// <param name="sGameday">format "week1"</param>
+        /// <returns></returns>
         public List<GameProp> getSchedule(string sGameday)
         {
             return null;
+        }
+
+
+        /// <summary>
+        /// this method returns the content of an offense or defense
+        /// stats file. depending on the paths handed over in init() the content
+        /// is read from a local file or from footballdb.com.
+        /// </summary>
+        /// <returns></returns>
+        public string getTeamData()
+        {
+            return "";
         }
 
 

@@ -10,6 +10,20 @@ namespace FBDBLib.controller
 {
     public class FTDBLibController
     {
+        #region tasks
+        /*
+         * methode init() 
+         * ist fertig
+         * 
+         * methode analyzeGameday()
+         * aufruf der analyse methode in der statiistik klasse muss noch
+         * eingebaut werden. ausserdem der output als string.
+         * 
+         * analyzeGame()
+         * die gesamte methode muss noch implementiert werden.
+         */ 
+        #endregion
+   
         private DataReader oFileAccess = new DataReader();
         #region public interface
 
@@ -21,6 +35,7 @@ namespace FBDBLib.controller
         ///  0 - initialsation ok
         /// -1 - parameters empty
         /// </returns>
+        /// <status>ready</status>
         public void init(FileProp oData)
         {
             oFileAccess.init(oData);
