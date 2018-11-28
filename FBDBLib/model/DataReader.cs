@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace FBDBLib.model
 {
-    // Diese Methode liest Dateien aus und stellt deren Inhalt als String zur 
-    // verfuegung. Sie prueft die uebergebenen Pfade auf Korrektheit und darauf, 
-    // ob es sich um lokale Pfade oder URL`s handelt. Den eigentlichen Zugriff auf
-    // das Filesystem oder das Internet wird sie vermutlich ebenfalls uebernehmen. 
-    // Das haengt von der Laenge des zu verwendenden Codes ab. Ggf. werden diese 
-    // Funktionen spaeter noch ausgelagert. 
+    /* Aufgabe
+        Diese Methode liest den Inhalt der drei Files Offense, Defense und Schedule aus. Sie
+        stellt dann die rohen HTML-Daten zur Verfuegung. Sie ist fuer den Zugriff auf das lokale
+        Filesystem und fuer den TCP/IP Zugriff auf footballdb.com zustaendig.     
+    */
     class DataReader
     {
         private FileProp gFileContents = new FileProp();
         bool gInternetFiles = false;
         bool gInnerState = false;
         
+        // pruefen der Pfade, analysieren der Pfadtypen und auslesen der Dateiinhalte
         public int init(FileProp sFilePaths)
         {
             // Aufgaben
@@ -54,18 +54,34 @@ namespace FBDBLib.model
 
 
         /// <summary>
-        /// this method returns the content of an offense or defense
-        /// stats file. depending on the paths handed over in init() the content
-        /// is read from a local file or from footballdb.com.
+        /// diese methode liefert den inhalt der offense-datei in rohform zurueck
         /// </summary>
         /// <returns></returns>
-        public string getTeamData()
+        public string getOffenseDataRaw()
         {
             return "";
         }
 
 
+        /// <summary>
+        /// diese methode liefert den inhalt der defense-datei in rohform zurueck
+        /// </summary>
+        /// <returns></returns>
+        public string getDefenseDataRaw()
+        {
+            return "";
+        }        
 
+
+        /// <summary>
+        /// diese methode liefert den inhalt der schedule-datei in rohform zurueck
+        /// </summary>
+        /// <returns></returns>
+        public string getScheduleDataRaw()
+        {
+            return "";
+        }
+        
         /// <summary>
         /// this method checks if all three paths are filled and valid.
         /// it also checks if the paths are URLS
