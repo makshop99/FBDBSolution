@@ -12,7 +12,7 @@ namespace FBDBLib.model
         stellt dann die rohen HTML-Daten zur Verfuegung. Sie ist fuer den Zugriff auf das lokale
         Filesystem und fuer den TCP/IP Zugriff auf footballdb.com zustaendig.     
     */
-    class DataReader
+    class RawDataReader
     {
         private FileProp gFileContents = new FileProp();
         bool gInternetFiles = false;
