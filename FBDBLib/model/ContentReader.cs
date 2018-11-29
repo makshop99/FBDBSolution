@@ -54,7 +54,7 @@ namespace FBDBLib.model
             readDefenseData(oData.Defense);
 
             // Auslesen des gesamten Spielplans in ein Dict(Week(Game)) ()
-            readGameDay(oData.Gameday);
+            readWeek("Week 13", oData.Gameday);
 
             return 0;
         }
@@ -288,7 +288,7 @@ namespace FBDBLib.model
         /// <returns></returns>
         private string getGameDay(string sData, string sGameday)
         {
-            int iWeek = sData.IndexOf(sGameday);
+            int iWeek = sData.IndexOf(sData);
             int iVon = sData.IndexOf("<tbody", iWeek);
             int iBis = sData.IndexOf("</tbody", iVon);
 
@@ -316,7 +316,7 @@ namespace FBDBLib.model
 
                 // 1st <td> tag  -> game date
                 int iVon = sGame.IndexOf("<td>");
-                int iBis = sGame.IndexOf("</span>", iVon);
+                int iBis = sGame.IndexOf("</span>", iVon);          // EXCEPTION - hier fliegt die Anwendung immer wieder heraus
                 string sDate = sGame.Substring(iVon + 5, iBis - iVon);
                 iVon = sDate.IndexOf(">");
                 iBis = sDate.IndexOf("<");
