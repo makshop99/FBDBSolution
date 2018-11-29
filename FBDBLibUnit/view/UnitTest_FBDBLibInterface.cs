@@ -15,9 +15,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"c:\dummy\offense.txt";
-            oData.DefenseFile = @"c:\dummy\offense.txt";
-            oData.GamedayFile = @"c:\dummy\offense.txt";
+            oData.Offense = @"c:\dummy\offense.txt";
+            oData.Defense = @"c:\dummy\offense.txt";
+            oData.Gameday = @"c:\dummy\offense.txt";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -29,9 +29,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"c:\dummy\offense.txt";
-            oData.DefenseFile = @"c:\dummy\offense.txt";
-            oData.GamedayFile = @"";
+            oData.Offense = @"c:\dummy\offense.txt";
+            oData.Defense = @"c:\dummy\offense.txt";
+            oData.Gameday = @"";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -43,9 +43,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"";
-            oData.DefenseFile = @"c:\dummy\offense.txt";
-            oData.GamedayFile = @"c:\dummy\offense.txt";
+            oData.Offense = @"";
+            oData.Defense = @"c:\dummy\offense.txt";
+            oData.Gameday = @"c:\dummy\offense.txt";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -57,9 +57,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"c:\dummy\offense.txt";
-            oData.DefenseFile = @"";
-            oData.GamedayFile = @"c:\dummy\offense.txt";
+            oData.Offense = @"c:\dummy\offense.txt";
+            oData.Defense = @"";
+            oData.Gameday = @"c:\dummy\offense.txt";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -73,9 +73,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.DefenseFile = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.GamedayFile = @"https://www.footballdb.com/games/index.html";
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -87,9 +87,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.DefenseFile = @"";
-            oData.GamedayFile = @"https://www.footballdb.com/games/index.html";
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -101,9 +101,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"";
-            oData.DefenseFile = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.GamedayFile = @"https://www.footballdb.com/games/index.html";
+            oData.Offense = @"";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"https://www.footballdb.com/games/index.html";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -115,9 +115,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp oData = new FileProp();
-            oData.OffenseFile = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
-            oData.DefenseFile = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
-            oData.GamedayFile = @"";
+            oData.Offense = @"https://www.footballdb.com/stats/teamstat.html?group=O&cat=T";
+            oData.Defense = @"https://www.footballdb.com/stats/teamstat.html?group=D&cat=T";
+            oData.Gameday = @"";
 
             // test with local paths OK
             int iReturn = oPruefling.init(oData);
@@ -150,9 +150,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp pPaths = new FileProp();
-            pPaths.OffenseFile = @"c:\dummy\offense.txt";
-            pPaths.DefenseFile = @"c:\dummy\defense.txt";
-            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            pPaths.Offense = @"c:\dummy\offense.txt";
+            pPaths.Defense = @"c:\dummy\defense.txt";
+            pPaths.Gameday = @"c:\dummy\schedule.txt";
             int iReturn = oPruefling.init(pPaths);
 
             GameProp oData = new GameProp();
@@ -168,9 +168,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp pPaths = new FileProp();
-            pPaths.OffenseFile = @"c:\dummy\offense.txt";
-            pPaths.DefenseFile = @"c:\dummy\defense.txt";
-            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            pPaths.Offense = @"c:\dummy\offense.txt";
+            pPaths.Defense = @"c:\dummy\defense.txt";
+            pPaths.Gameday = @"c:\dummy\schedule.txt";
             int iReturn = oPruefling.init(pPaths);
 
             GameProp oData = new GameProp();
@@ -186,9 +186,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp pPaths = new FileProp();
-            pPaths.OffenseFile = @"c:\dummy\offense.txt";
-            pPaths.DefenseFile = @"c:\dummy\defense.txt";
-            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            pPaths.Offense = @"c:\dummy\offense.txt";
+            pPaths.Defense = @"c:\dummy\defense.txt";
+            pPaths.Gameday = @"c:\dummy\schedule.txt";
             int iReturn = oPruefling.init(pPaths);
 
             GameProp oData = new GameProp();
@@ -204,9 +204,9 @@ namespace FBDBLibUnit.view
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
             FileProp pPaths = new FileProp();
-            pPaths.OffenseFile = @"c:\dummy\offense.txt";
-            pPaths.DefenseFile = @"c:\dummy\defense.txt";
-            pPaths.GamedayFile = @"c:\dummy\schedule.txt";
+            pPaths.Offense = @"c:\dummy\offense.txt";
+            pPaths.Defense = @"c:\dummy\defense.txt";
+            pPaths.Gameday = @"c:\dummy\schedule.txt";
             int iReturn = oPruefling.init(pPaths);
 
             string sSoll = "error: no gameday passed";

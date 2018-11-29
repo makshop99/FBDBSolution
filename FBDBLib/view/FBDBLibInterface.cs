@@ -26,14 +26,13 @@ namespace FBDBLib.view
         public int init(FileProp oData)
         {
             // check data
-            if (oData.OffenseFile.Length < 1) return -1;
-            if (oData.DefenseFile.Length < 1) return -2;
-            if (oData.GamedayFile.Length < 1) return -3;
+            if (oData.Offense.Length < 1) return -1;
+            if (oData.Defense.Length < 1) return -2;
+            if (oData.Gameday.Length < 1) return -3;
 
             // init controller
-            oController = new FTDBLibController();
-            oController.init(oData);
-            return 0;
+            oController = new FTDBLibController();            
+            return oController.init(oData);
         }
 
         /// <summary>

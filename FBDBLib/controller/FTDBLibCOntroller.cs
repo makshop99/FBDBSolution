@@ -21,24 +21,39 @@ namespace FBDBLib.controller
          * 
          * analyzeGame()
          * die gesamte methode muss noch implementiert werden.
-         */ 
+         */
         #endregion
-   
+
+        #region members
         private DataReader oFileAccess = new DataReader();
+        private FileProp oRawData = new FileProp();
+        private ContentReader oContent = new ContentReader();
+        private DataAnalyser oAnalyser = new DataAnalyser();
+        #endregion
+
+
+
         #region public interface
 
         /// <summary>
-        /// public init method
+        /// this method initialises the class. it reads out the raw data and converts it to content data.
         /// </summary>
         /// <param name="oData"></param>
         /// <returns>
         ///  0 - initialsation ok
         /// -1 - parameters empty
+        /// -2 -  error while reading raw data
         /// </returns>
         /// <status>ready</status>
-        public void init(FileProp oData)
+        public int init(FileProp oData)
         {
-            oFileAccess.init(oData);
+            // read raw file contents
+            if (oFileAccess.init(oData) != 0) return -2;
+            oRawData = oFileAccess.getAllRawData();
+            if (oRawData == null) return -2;
+
+            // read content data
+            return oContent.init(oRawData);
         }
         
 
@@ -46,10 +61,10 @@ namespace FBDBLib.controller
         {
             // gameday auslesen
             List<GameProp> oGameday = new List<GameProp>();
-            oGameday = oFileAccess.getSchedule(sGameday);
+            //oGameday = oFileAccess.getScheduleDataRaw();
 
             // spiele analysieren
-            DataAnalyzer oStats = new DataAnalyzer();
+            DataAnalyser oStats = new DataAnalyser();
             // iterativ alle Spiele analyieren, ein gemeinsamen String erzeugen
 
             return "stats of all games";
@@ -58,7 +73,7 @@ namespace FBDBLib.controller
         public string analyzeGame(GameProp oGame)
         {
             // spiel anaysieren                       
-            return new DataAnalyzer().analyzeGame(oGame);
+            return new DataAnalyser().analyzeGame(oGame);
         }
         #endregion
 
@@ -66,9 +81,9 @@ namespace FBDBLib.controller
         // checks the content of the paths again
         private int checkPaths(FileProp oData)
         {
-            if (oData.OffenseFile.Length == 0) return -1;
-            if (oData.DefenseFile.Length == 0) return -1;
-            if (oData.GamedayFile.Length == 0) return -1;
+            if (oData.Offense.Length == 0) return -1;
+            if (oData.Defense.Length == 0) return -1;
+            if (oData.Gameday.Length == 0) return -1;
             return 0;
         }
 

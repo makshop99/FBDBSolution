@@ -1,57 +1,53 @@
 ﻿using FBDBLib.data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FBDBLib.model
 {
-    /* Aufgabe
-        Diese Methode liest den Inhalt der drei Files Offense, Defense und Schedule aus. Sie
-        stellt dann die rohen HTML-Daten zur Verfuegung. Sie ist fuer den Zugriff auf das lokale
-        Filesystem und fuer den TCP/IP Zugriff auf footballdb.com zustaendig.     
-    */
-    class RawDataReader
+    /// <summary>
+    /// this class reads all raw data needed. this includes offense stats, defense stats and gameday information.
+    /// </summary>
+    class DataReader
     {
+        #region members
         private FileProp gFileContents = new FileProp();
+        private FileProp oRawData = new FileProp();
         bool gInternetFiles = false;
         bool gInnerState = false;
-        
-        // pruefen der Pfade, analysieren der Pfadtypen und auslesen der Dateiinhalte
+        #endregion
+
+        #region interface
+        /// <summary>
+        /// initiating the class. readsout all raw data ans stores it inside.
+        /// </summary>
+        /// <param name="sFilePaths"></param>
+        /// <returns></returns>
         public int init(FileProp sFilePaths)
         {
-            // Aufgaben
-            
-            // die Fileinhalte in eine eigene Struktur schreiben
 
-
-
+            // check parameters
             int iReturn = checkData(sFilePaths);
             if (iReturn == 0)
             {
-                // pruefen, ob File oder URL
-                //gInternetFiles = checkPaths(sFilePaths);
+                // read data
+                iReturn = readData(sFilePaths);
 
-                // entsprechend die Daten auslesen    
-
-                // wenn alles in Ordnung ist, inneren Status auf OK setzen
-                gInnerState = true;
+                // set inner state of classe
+                if (iReturn == 0) gInnerState = true;
             }
             return iReturn;
         }
 
-        /// <summary>
-        /// this method returns a list<> with all games of a specific gameday.
-        /// the name of the gameday is the parameter of this method.
-        /// </summary>
-        /// <param name="sGameday">format "week1"</param>
-        /// <returns></returns>
-        public List<GameProp> getSchedule(string sGameday)
+        public FileProp getAllRawData()
         {
-            return null;
+            if (gInnerState) return oRawData;
+            else return null;
         }
-
 
         /// <summary>
         /// diese methode liefert den inhalt der offense-datei in rohform zurueck
@@ -59,9 +55,10 @@ namespace FBDBLib.model
         /// <returns></returns>
         public string getOffenseDataRaw()
         {
-            return "";
-        }
+            if (gInnerState) return oRawData.Offense;
+            else return "error";
 
+        }
 
         /// <summary>
         /// diese methode liefert den inhalt der defense-datei in rohform zurueck
@@ -69,9 +66,10 @@ namespace FBDBLib.model
         /// <returns></returns>
         public string getDefenseDataRaw()
         {
-            return "";
-        }        
+            if (gInnerState) return oRawData.Defense;
+            else return "error";
 
+        }
 
         /// <summary>
         /// diese methode liefert den inhalt der schedule-datei in rohform zurueck
@@ -79,9 +77,12 @@ namespace FBDBLib.model
         /// <returns></returns>
         public string getScheduleDataRaw()
         {
-            return "";
+            if (gInnerState) return oRawData.Gameday;
+            else return "error";
         }
-        
+        #endregion
+
+        #region check methods
         /// <summary>
         /// this method checks if all three paths are filled and valid.
         /// it also checks if the paths are URLS
@@ -90,11 +91,114 @@ namespace FBDBLib.model
         /// <returns></returns>
         private int checkData(FileProp oData)
         {
-            if (oData.OffenseFile.Length <= 0) return -1;
-            if (oData.DefenseFile.Length <= 0) return -1;
-            if (oData.GamedayFile.Length <= 0) return -1;
+            if (oData.Offense.Length <= 0) return -1;
+            if (oData.Defense.Length <= 0) return -1;
+            if (oData.Gameday.Length <= 0) return -1;
             return 0;
         }
 
+        /// <summary>
+        /// this method checks wherethere a the given paths are filesystem or url
+        /// </summary>
+        /// <param name="oData"></param>
+        /// <returns>
+        ///     1   - URL
+        ///     2   - windows path
+        ///     3   - unix path
+        ///     -1  - error
+        /// </returns>
+        private int checkPaths(string sPath)
+        {
+            if (sPath.Substring(0, 4).ToLower().Equals("http")) return 1;
+            else if (sPath.Substring(1, 1).Equals(":")) return 2;
+            else if (sPath.Substring(0, 2).Equals("//")) return 3;
+            else return -1;
+        }
+        #endregion
+
+        #region file reading
+        /// <summary>
+        /// this methods controls the readout of all raw data.
+        /// </summary>
+        /// <param name="oPaths"></param>
+        /// <returns></returns>
+        private int readData(FileProp oPaths)
+        {
+            int iReturn = 0;
+
+            // Offense-File auslesen
+            String sDummy = readFile(oPaths.Offense);
+            if (sDummy.Equals("error")) return -1;
+            oRawData.Offense = sDummy;
+
+            // Defense-File auslesen
+            sDummy = readFile(oPaths.Defense);
+            if (sDummy.Equals("error")) return -1;
+            oRawData.Defense = sDummy;
+
+            // Schedule auslesen
+            sDummy = readFile(oPaths.Offense);
+            if (sDummy.Equals("error")) return -1;
+            oRawData.Gameday = sDummy;
+
+            return iReturn;
+        }
+
+        /// <summary>
+        /// this method checks the filetype and starts the readout of the file the proper way.
+        /// </summary>
+        /// <param name="sFilePath"></param>
+        /// <returns></returns>
+        private string readFile(string sFilePath)
+        {
+            int iFileType = checkPaths(sFilePath);
+            
+
+            switch (iFileType)
+            {
+                case 1:
+                    // read url
+                    return readURL(sFilePath);
+                    break;
+                case 2:
+                    // read windows
+                    return readLocalFile(sFilePath);
+                    break;
+                default:
+                    return "error";
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// this method reads the data from the internet
+        /// </summary>
+        /// <param name="sUrl"></param>
+        /// <returns></returns>
+        private String readURL(String sUrl)
+        {
+            try
+            {
+                String sReturn = "";
+                using (WebClient client = new WebClient())
+                {
+                    sReturn = client.DownloadString(sUrl);
+                }
+                return sReturn;
+            }
+            catch (Exception e) { return "error"; }
+        }
+
+        /// <summary>
+        /// this method reads the data from a local file
+        /// </summary>
+        /// <param name="sFilePath"></param>
+        /// <returns></returns>
+        private string readLocalFile(String sFilePath)
+        {
+            try { return File.ReadAllText(sFilePath); }
+            catch (Exception e) { return "error"; }
+        }
+        #endregion
     }
 }

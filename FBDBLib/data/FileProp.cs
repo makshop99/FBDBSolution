@@ -12,8 +12,8 @@ namespace FBDBLib.data
         private string sDefenseFile;
         private string sGamedayFile;
 
-        public string OffenseFile { get => sOffenseFile; set => sOffenseFile = value; }
-        public string DefenseFile { get => sDefenseFile; set => sDefenseFile = value; }
-        public string GamedayFile { get => sGamedayFile; set => sGamedayFile = value; }
+        public string Offense { get => sOffenseFile; set => sOffenseFile = value; }
+        public string Defense { get => sDefenseFile; set => sDefenseFile = value; }
+        public string Gameday { get => sGamedayFile; set => sGamedayFile = value; }
     }
 }
