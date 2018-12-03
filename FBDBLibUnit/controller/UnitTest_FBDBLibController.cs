@@ -15,7 +15,7 @@ namespace FBDBLibUnit.controller
             string sOffenseFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\offense.htm";
             string sDefenseFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\defense.htm";
             string sScheduleFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\schedule.htm";
-            //sScheduleFile = "https://www.footballdb.com/games/index.html";
+            //sScheduleFile = "https://www.footballdb.com/games/index.html"; // use only reely...
             FileProp oData = new FileProp();
             oData.Offense = sOffenseFile;
             oData.Defense = sDefenseFile;
