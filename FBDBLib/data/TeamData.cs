@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FDB_Analysis.code.data
 {
-    class TeamData
+    public class TeamData
     {
         private String sTeamName;
 

@@ -52,12 +52,11 @@ namespace FBDBLib.view
         /// </summary>
         /// <param name="sData"></param>
         /// <returns></returns>
-        public string getGame(GameProp oData)
+        public string getGame(string sAwayTeam, string sHomeTeam)
         {
-            if (oData == null) return "error: no gameday passed";
-            if (oData.Home.Length <= 0) return "error: no hometeam passed";
-            if (oData.Away.Length <= 0) return "error: no awayteam passed";
-            return oController.analyzeGame(oData);
+            if (sHomeTeam.Length <= 0) return "error: no hometeam passed";
+            if (sAwayTeam.Length <= 0) return "error: no awayteam passed";
+            return oController.analyseGame(sAwayTeam,sHomeTeam);
         }
     }
 }

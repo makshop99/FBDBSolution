@@ -49,19 +49,28 @@ namespace FBDBLib.model
             // Auslesen der Offense Daten in ein Dict(TeamData)
             readOffenseData(oData.Offense);
 
-
             // Auslesen der Defense Daten in ein Dict(TeamData); das gleiche Objekt wie die Offense Daten()
             readDefenseData(oData.Defense);
 
             // Auslesen des gesamten Spielplans in ein Dict(Week(Game)) ()
-            readWeek("Week 13", oData.Gameday);
+// [TASK_402] - read the whole season in a data structur (TFS tasks existing
+            //readWeek("Week 13", oData.Gameday);
 
             return 0;
+        }
+
+        /// <summary>
+        /// this method returns the teamdata for a teams thats name is given as string
+        /// </summary>
+        /// <param name="sTeamName"></param>
+        /// <returns></returns>
+        public TeamData getTeamData(string sTeamName)
+        {
+            return oTeamStats[sTeamName];
         }
         #endregion
 
         #region Offense/Defense
-
         /// <summary>
         /// this method reads out the offense stats of all teams from the raw string the class received as parameter in tne interface method init()
         /// </summary>

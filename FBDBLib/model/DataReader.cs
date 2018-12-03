@@ -137,7 +137,7 @@ namespace FBDBLib.model
             oRawData.Defense = sDummy;
 
             // Schedule auslesen
-            sDummy = readFile(oPaths.Offense);
+            sDummy = readFile(oPaths.Gameday);
             if (sDummy.Equals("error")) return -1;
             oRawData.Gameday = sDummy;
 

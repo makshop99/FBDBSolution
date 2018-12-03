@@ -1,5 +1,6 @@
 ﻿using FBDBLib.data;
 using FBDBLib.model;
+using FDB_Analysis.code.data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,10 +71,12 @@ namespace FBDBLib.controller
             return "stats of all games";
         }
 
-        public string analyzeGame(GameProp oGame)
+        public string analyseGame(string sAwayTeam, string sHomeTeam)
         {
             // spiel anaysieren                       
-            return new DataAnalyser().analyzeGame(oGame);
+            TeamData oAway = oContent.getTeamData(sAwayTeam);
+            TeamData oHome = oContent.getTeamData(sHomeTeam);
+            return new DataAnalyser().analyseGame(oAway, oHome);
         }
         #endregion
 
@@ -86,7 +89,6 @@ namespace FBDBLib.controller
             if (oData.Gameday.Length == 0) return -1;
             return 0;
         }
-
         #endregion
     }
 }
