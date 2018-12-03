@@ -12,7 +12,7 @@ namespace FBDBLibUnit.view
         private string sScheduleFile = @"C:\Users\PeterPiper07\workspace\CSharp\FBDBSolution\schedule.htm";
 
         #region init tests - local paths
-        [TestMethod]
+        //[TestMethod]
         public void FBDBLibInterface_init_FilesOk()
         {
             FBDBLib.view.FBDBLibInterface oPruefling = new FBDBLib.view.FBDBLibInterface();
