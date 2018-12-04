@@ -59,8 +59,19 @@ namespace FBDBLib.model
             return 0;
         }
 
+
         /// <summary>
-        /// this method returns the teamdata for a teams thats name is given as string
+        /// this method returns a list of GameProp objects for a given gameday
+        /// </summary>
+        /// <param name="sGameDay"></param>
+        /// <returns></returns>
+        public List<GameProp> readGameday(string sGameDay, string sScheduleRaw)
+        {
+            return readWeek(sGameDay, sScheduleRaw);
+        }
+
+        /// <summary>
+        /// this method returns the teamdata for a team thats name is given as string
         /// </summary>
         /// <param name="sTeamName"></param>
         /// <returns></returns>
@@ -297,7 +308,7 @@ namespace FBDBLib.model
         /// <returns></returns>
         private string getGameDay(string sData, string sGameday)
         {
-            int iWeek = sData.IndexOf(sData);
+            int iWeek = sData.IndexOf(sGameday);
             int iVon = sData.IndexOf("<tbody", iWeek);
             int iBis = sData.IndexOf("</tbody", iVon);
 

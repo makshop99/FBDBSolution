@@ -58,25 +58,41 @@ namespace FBDBLib.controller
         }
         
 
-        public string analyzeGameday(string sGameday)
+        /// <summary>
+        /// this method runs the analysis of a copmplete gameday.
+        /// </summary>
+        /// <param name="sGameday"></param>
+        /// <returns></returns>
+        public List<GameProp> analyzeGameday(string sGameday)
         {
-            // gameday auslesen
-            List<GameProp> oGameday = new List<GameProp>();
-            //oGameday = oFileAccess.getScheduleDataRaw();
+            List<GameProp> oReturn = new List<GameProp>();
 
-            // spiele analysieren
-            DataAnalyser oStats = new DataAnalyser();
-            // iterativ alle Spiele analyieren, ein gemeinsamen String erzeugen
+            // read raw data from file/url
+            string sRawSchedule = oFileAccess.getScheduleDataRaw();
 
-            return "stats of all games";
+            // read out GameProp objects for given gameday
+            List<GameProp> oGameday = oContent.readGameday(sGameday, sRawSchedule);
+
+            // for each GameProp 
+            foreach (var oGame in oGameday)
+            {
+                // analyseGame game, add result to return value
+                GameProp oData = analyseGame(oGame.Away, oGame.Home);
+                oData.Date = oGame.Date;
+                oReturn.Add(oData);
+            }
+            return oReturn;
         }
 
-        public string analyseGame(string sAwayTeam, string sHomeTeam)
-        {
-            // spiel anaysieren                       
-            TeamData oAway = oContent.getTeamData(sAwayTeam);
-            TeamData oHome = oContent.getTeamData(sHomeTeam);
-            return new DataAnalyser().analyseGame(oAway, oHome);
+        /// <summary>
+        /// this method runs the analysis of a single game.
+        /// </summary>
+        /// <param name="sAwayTeam"></param>
+        /// <param name="sHomeTeam"></param>
+        /// <returns></returns>
+        public GameProp analyseGame(string sAwayTeam, string sHomeTeam)
+        {                
+            return analyseSingleGame(sAwayTeam, sHomeTeam);
         }
         #endregion
 
@@ -90,5 +106,22 @@ namespace FBDBLib.controller
             return 0;
         }
         #endregion
+
+        #region analyse game
+        /// <summary>
+        /// this method starts the analysis of a game and returns the result
+        /// </summary>
+        /// <param name="sAway"></param>
+        /// <param name="sHome"></param>
+        /// <returns></returns>
+        private GameProp analyseSingleGame(string sAway, string sHome)
+        {
+            GameProp oReturn = new GameProp();
+            TeamData oAway = oContent.getTeamData(sAway); // read stats for away team
+            TeamData oHome = oContent.getTeamData(sHome); // read stats for home team
+            return new DataAnalyser().analyseGame(oAway, oHome); // run analysis
+        }
+        #endregion
+
     }
 }

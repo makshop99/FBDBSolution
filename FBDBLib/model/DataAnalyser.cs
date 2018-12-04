@@ -17,40 +17,48 @@ namespace FBDBLib.model
         #endregion
 
         #region interface
-
         /// <summary>
         /// this method analyses the game of two teams by their stats
         /// </summary>
         /// <param name="tdAway"></param>
         /// <param name="tdHome"></param>
         /// <returns></returns>
-        public String analyseGame(TeamData tdAway, TeamData tdHome)
+        public GameProp analyseGame(TeamData tdAway, TeamData tdHome)
         {
-            // Offense berechnen
+            GameProp oReturn = new GameProp();
+
+            // calculate offense
             Double dHome = calculateOffense(tdAway, tdHome);
             Double dAway = iOffenseMax - dHome;
 
-            // Defense berechnen
+            // calcutale defense
             Double idummy = calculateDefense(tdAway, tdHome);
             dHome += idummy;
             dAway += iDefenseMax - idummy;
 
-            // Heimvorteil
-            //dHome += 10;
+            // homefield advantage (deactivated)
+            // dHome += 10;
             int iHome = Convert.ToInt32(dHome);
             int iAway = Convert.ToInt32(dAway);
 
-            // Streak (Spaeter...)
+            // fill the return object
+            oReturn.Away = tdAway.TeamName;
+            oReturn.AwayScore = iAway.ToString();
+            oReturn.Home = tdHome.TeamName;
+            oReturn.HomeScore = iHome.ToString();
+            oReturn.ScoreDiff = (iHome - iAway).ToString();
 
-
-            String sReturn = tdAway.TeamName + " @ " + tdHome.TeamName + " - " + iAway.ToString() + ":" + iHome.ToString();
-            return sReturn;
-            //  return "stats of a single game";
-
+            return oReturn;
         }
         #endregion
 
         #region stats methods
+        /// <summary>
+        /// this method compares the offense stats of both teams and calculates the chances for both teams offensively
+        /// </summary>
+        /// <param name="tdAway"></param>
+        /// <param name="tdHome"></param>
+        /// <returns></returns>
         private Double calculateOffense(TeamData tdAway, TeamData tdHome)
         {
             // 100, 40 for Points/Game; 35 for PassingYards/Game; 25 for RushYards/Game
@@ -71,8 +79,12 @@ namespace FBDBLib.model
             return (iPoints + iPassing + iRushing);
         }
 
-        //TODO - hier muss die Logik noch herumgedreht werden, da aktuell auch hier die grossen Werte besser sind!!!
-        // update - ich habe schon etwas geaendert, muss aber mal ueberprueft werden.
+        /// <summary>
+        /// this method compares the defenses stats of both teams and calculates the chances for both teams defensively
+        /// </summary>
+        /// <param name="tdAway"></param>
+        /// <param name="tdHome"></param>
+        /// <returns></returns>
         private Double calculateDefense(TeamData tdAway, TeamData tdHome)
         {
             // 100, 40 for Points/Game; 35 for PassingYards/Game; 25 for RushYards/Game

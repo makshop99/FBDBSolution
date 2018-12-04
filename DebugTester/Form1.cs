@@ -17,6 +17,8 @@ namespace DebugTester
         public Form1()
         {
             InitializeComponent();
+            btGame.Enabled = false;
+            btGameday.Enabled = false;            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,6 +38,12 @@ namespace DebugTester
             int iReturn = oPruefling.init(oData);
             tbOutput.Text = "init() returns value [" + iReturn.ToString() + "]";
 
+            if (iReturn == 0)
+            {
+                btGame.Enabled = true;
+                btGameday.Enabled = true;
+            }
+
 
         }
 
@@ -43,7 +51,32 @@ namespace DebugTester
         {
             string sHomeTeam = "Detroit Lions";
             string sAwayTeam = "Miami Dolphins";
-            tbOutput.Text = oPruefling.getGame(sAwayTeam, sHomeTeam);
+
+            // run analysis
+            GameProp oData = oPruefling.getGame(sAwayTeam, sHomeTeam);
+
+            // create output string
+            string sReturn = oData.Away + " @ " + oData.Home + " - ";
+            sReturn += oData.AwayScore + " : " + oData.HomeScore + " (" + oData.ScoreDiff + ")";
+
+            tbOutput.Text = sReturn;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string sGameDay = cbGameday.SelectedItem.ToString();
+            List<GameProp> oData = oPruefling.getGameDay(sGameDay);
+            string sReturn = "";
+
+            // create output string
+            foreach (var oGame in oData)
+            {
+                sReturn += oGame.Away + " @ " + oGame.Home + " - ";
+                sReturn += oGame.AwayScore + " : " + oGame.HomeScore + " (" + oGame.ScoreDiff + ")" + Environment.NewLine;
+                //sReturn += " -> " + oGame.Date + Environment.NewLine; // game date
+            }
+
+            tbOutput.Text = sReturn;
         }
     }
 }
