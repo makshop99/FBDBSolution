@@ -17,7 +17,6 @@ namespace FBDBLib.model
         #region members
         private FileProp gFileContents = new FileProp();
         private FileProp oRawData = new FileProp();
-        bool gInternetFiles = false;
         bool gInnerState = false;
         #endregion
 
@@ -158,15 +157,12 @@ namespace FBDBLib.model
             {
                 case 1:
                     // read url
-                    return readURL(sFilePath);
-                    break;
+                    return readURL(sFilePath);                    
                 case 2:
                     // read windows
                     return readLocalFile(sFilePath);
-                    break;
                 default:
                     return "error";
-                    break;
             }
         }
 
@@ -186,7 +182,7 @@ namespace FBDBLib.model
                 }
                 return sReturn;
             }
-            catch (Exception e) { return "error"; }
+            catch (Exception) { return "error"; }
         }
 
         /// <summary>
@@ -197,7 +193,7 @@ namespace FBDBLib.model
         private string readLocalFile(String sFilePath)
         {
             try { return File.ReadAllText(sFilePath); }
-            catch (Exception e) { return "error"; }
+            catch (Exception) { return "error"; }
         }
         #endregion
     }
