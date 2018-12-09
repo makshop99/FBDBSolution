@@ -19,9 +19,6 @@
     <Reference Include="FBDBLib">
       <HintPath>..\..\..\..\libs\FBDBLib.dll</HintPath>
     </Reference>
-    <Reference Include="FBDBLib">
-      <HintPath>..\..\..\libs\FBDBLib.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\data\" />
@@ -30,5 +27,8 @@
     <None Include="wwwroot\data\defense.htm" />
     <None Include="wwwroot\data\offense.htm" />
     <None Include="wwwroot\data\schedule.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FBDBCoreLib\FBDBCoreLib.csproj" />
   </ItemGroup>
 </Project>
