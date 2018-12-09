@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--TemplateType001-->
+<head>
+    <title></title>
+    <link href="~/css/Layout.css" type="text/css" rel="stylesheet" />
+    <script type="../text/javascript" src="~/js/datetime.js"></script>
+</head>
+<body>
+    <!-- Header - Titelarea-->
+    <div id="HeaderArea"><div id="HeaderLine"><!--PAGEHEADER-->MyPage</div></div>
+    <!-- Infoheader - Area -->
+    <div id="InfoHeaderArea">
+        <div id="infoText">
+            <script type="text/javascript" language="JavaScript">document.write(getSystate());</script>
+        </div>
+    </div>
+
+    <!-- Navigator-Area -->
+    <div id="navigation">
+        <!--NAVIGATORLINKS-->
+        <div><a asp-area="" asp-controller="Home" asp-action="GameAnalysis">Game Analysis</a></div></h3>
+        <div><a asp-area="" asp-controller="Home" asp-action="GamedayAnalysis">Gameday Analysis</a></div></h3>
+        <div><a asp-area="" asp-controller="Home" asp-action="Links">Links</a></div></h3>
+        <div><a asp-area="" asp-controller="Home" asp-action="About">About this page</a></div></h3>
+    </div>
+    <!-- Main-Area -->
+    <div id="mainArea">
+        @RenderBody()
+    </div>
+</body>
+</html>

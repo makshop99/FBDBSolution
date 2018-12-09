@@ -1,0 +1,20 @@
+﻿@{
+
+    ViewData["Title"] = "Gameday Analysis";
+}
+
+<h1>Analysing finished</h1>
+<hr />
+<h2>@ViewData["Title"]</h2>
+@{
+    List<GameProp> oList = new List<GameProp>();
+    oList = ViewData["Result"] as List<GameProp>;
+
+    foreach (var oItem in oList)
+    {
+        string sResult = oItem.Away + " at " + oItem.Home + " - " + oItem.AwayScore + ":" + oItem.HomeScore;        
+        <h3><div><a asp-area="" asp-controller="Home" asp-action="GameResult" asp-route-HomeTeam=@oItem.Home asp-route-AwayTeam=@oItem.Away>@sResult</a></div></h3>
+    }
+}
+
+

@@ -1,0 +1,126 @@
+﻿body {
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 20px;
+    FONT-STYLE: normal;
+    font-family: Gill Sans MT;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background: #fffbf0
+}
+
+#HeaderArea {
+    BACKGROUND-COLOR: #010101;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    POSITION: absolute;
+    LEFT: 0px;
+    TOP: 0px;
+    WIDTH: 100%;
+    HEIGHT: 50px;
+}
+
+#HeaderLine {
+    FONT: 24px Arial, Helvetica, sans-serif;
+    COLOR: #50aadd;
+    LETTER-SPACING: .2em;
+    LINE-HEIGHT: 30px;
+    POSITION: absolute;
+    LEFT: 3px;
+    TOP: 5px;
+}
+
+#InfoHeaderArea {
+    BACKGROUND-COLOR: #010101;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    POSITION: absolute;
+    LEFT: 0px;
+    TOP: 50px;
+    WIDTH: 100%;
+    HEIGHT: 30px;
+}
+
+#infoText {
+    POSITION: absolute;
+    TOP: 3px;
+    LEFT: 5px;
+    font: 11px Arial, Helvetica, sans-serif;
+    FONT-WEIGHT: bold;
+    COLOR: #50aad2;
+    letter-spacing: .4em;
+    line-height: 18px;
+}
+
+
+#navigation {
+    background: #e6e6e6;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    POSITION: absolute;
+    LEFT: 2px;
+    TOP: 92px;
+    WIDTH: 200px;
+    HEIGHT: 80%;
+}
+
+    #navigation td {
+        border-bottom: 2px solid #7a7d8a;
+    }
+
+    #navigation a {
+        font: bold 11px Verdana, Helvetica, sans-serif;
+        color: #2e405c;
+        line-height: 16px;
+        letter-spacing: .1em;
+        text-decoration: none;
+        display: block;
+        padding: 10px 6px 10px 10px;
+        width: 100%;
+        background: #e6e6e6;
+    }
+
+        #navigation a:hover {
+            background: #50aadd;
+            color: #2e405c;
+            width: 95%;
+        }
+
+h1 {
+    font: 20px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 36px;
+    letter-spacing: .21em;
+}
+
+h2 {
+    font: bold 15px Calibri, Helvetica, sans-serif;
+    color: #2e405c;
+    line-height: 10px;
+    letter-spacing: .2em;
+    padding: 20px 10px 1px 1px;
+}
+
+h3 {
+    font: 12px Calibri, Helvetica, sans-serif;
+    color: #666666;
+    line-height: 10px;
+    margin-top: 0px;
+    padding: 1px;
+}
+
+#mainArea {
+    POSITION: absolute;
+    background: #ffffff;
+    LEFT: 190px;
+    TOP: 80px;
+    WIDTH: 80%;
+    height: 80%;
+    padding: 6px 10px 10px 10px;
+    background: #fffbf0
+}
